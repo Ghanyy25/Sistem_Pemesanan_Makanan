@@ -8,9 +8,9 @@ public class Main {
     private static Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) {
-        daftarMenu.add(new Menu(1, "Nasi Goreng", 15000));
-        daftarMenu.add(new Menu(2, "Es Teh", 5000));
-        daftarMenu.add(new Menu(3, "Ayam Bakar", 20000));
+        daftarMenu.add(new Menu( "Nasi Goreng", 15000));
+        daftarMenu.add(new Menu("Es Teh", 5000));
+        daftarMenu.add(new Menu("Ayam Bakar", 20000));
 
         while (true) {
             System.out.println("\n=== Sistem Pemesanan Makanan ===");

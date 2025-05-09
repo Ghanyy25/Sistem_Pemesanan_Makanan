@@ -18,9 +18,9 @@ public class MainGui {
 
     public static void main(String[] args) {
         // Menu awal
-        daftarMenu.add(new Menu(1, "Nasi Goreng", 15000));
-        daftarMenu.add(new Menu(2, "Es Teh", 5000));
-        daftarMenu.add(new Menu(3, "Ayam Bakar", 20000));
+        daftarMenu.add(new Menu("Nasi Goreng", 15000));
+        daftarMenu.add(new Menu("Es Teh", 5000));
+        daftarMenu.add(new Menu("Ayam Bakar", 20000));
 
         frame = new JFrame("Sistem Pemesanan Makanan");
         frame.setSize(500, 400);
@@ -165,7 +165,7 @@ public class MainGui {
             try {
                 double harga = Double.parseDouble(hargaStr);
                 int id = daftarMenu.size() + 1;
-                daftarMenu.add(new Menu(id, nama, harga));
+                daftarMenu.add(new Menu(nama, harga));
                 updateMenuText(menuArea);
             } catch (NumberFormatException ex) {
                 JOptionPane.showMessageDialog(frame, "Harga tidak valid.");
@@ -179,10 +179,6 @@ public class MainGui {
                 boolean removed = daftarMenu.removeIf(item -> item.getId() == id);
         
                 if (removed) {
-                    // Perbarui ulang ID agar tetap unik dan urut
-                    for (int i = 0; i < daftarMenu.size(); i++) {
-                        daftarMenu.get(i).setId(i + 1);
-                    }
                     updateMenuText(menuArea);
                 } else {
                     JOptionPane.showMessageDialog(frame, "ID tidak ditemukan.");

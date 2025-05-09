@@ -27,8 +27,7 @@ public class Manager extends User {
                     String nama = scanner.nextLine();
                     System.out.print("Harga: ");
                     double harga = scanner.nextDouble();
-                    int idBaru = menu.size() + 1;
-                    menu.add(new Menu(idBaru, nama, harga));
+                    menu.add(new Menu(nama, harga));
                     System.out.println("Menu berhasil ditambahkan.");
                     break;
                 case 2:
