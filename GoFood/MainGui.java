@@ -40,45 +40,64 @@ public class MainGui {
 
     // Panel menu utama
     private static JPanel menuUtamaPanel() {
-        JPanel panel = new JPanel(new GridLayout(3, 1, 10, 10));
-        JLabel label = new JLabel("Pilih Peran:", JLabel.CENTER);
-        label.setFont(new Font("Arial", Font.BOLD, 18));
-
-        JButton btnCustomer = new JButton("Customer");
-        JButton btnManager = new JButton("Manager");
-
-        btnCustomer.addActionListener(e -> cardLayout.show(mainPanel, "customer"));
-        btnManager.addActionListener(e -> {
-            JPanel loginPanel = new JPanel(new GridLayout(2, 2));
-            JTextField usernameField = new JTextField();
-            JPasswordField passwordField = new JPasswordField();
+    
+            JPanel panel = new JPanel();
+            panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
         
-            loginPanel.add(new JLabel("Username:"));
-            loginPanel.add(usernameField);
-            loginPanel.add(new JLabel("Password:"));
-            loginPanel.add(passwordField);
+            JLabel label = new JLabel("Pilih Peran:");
+            label.setFont(new Font("Arial", Font.BOLD, 18));
+            label.setAlignmentX(Component.CENTER_ALIGNMENT);
         
-            int result = JOptionPane.showConfirmDialog(frame, loginPanel,
-                    "Login Manager", JOptionPane.OK_CANCEL_OPTION);
+            JButton btnCustomer = new JButton("Customer");
+            JButton btnManager = new JButton("Manager");
         
-            if (result == JOptionPane.OK_OPTION) {
-                String username = usernameField.getText();
-                String password = new String(passwordField.getPassword());
+            Font tombolFont = new Font("Arial", Font.PLAIN, 16);
+            Dimension ukuranTombol = new Dimension(200, 40);
         
-                if (username.equals("admin") && password.equals("1234")) {
-                    cardLayout.show(mainPanel, "manager");
-                } else {
-                    JOptionPane.showMessageDialog(frame, "Login gagal. Username atau password salah.");
+            btnCustomer.setFont(tombolFont);
+            btnManager.setFont(tombolFont);
+            btnCustomer.setMaximumSize(ukuranTombol);
+            btnManager.setMaximumSize(ukuranTombol);
+            btnCustomer.setAlignmentX(Component.CENTER_ALIGNMENT);
+            btnManager.setAlignmentX(Component.CENTER_ALIGNMENT);
+        
+            // Aksi tombol
+            btnCustomer.addActionListener(e -> cardLayout.show(mainPanel, "customer"));
+            btnManager.addActionListener(e -> {
+                JPanel loginPanel = new JPanel(new GridLayout(2, 2));
+                JTextField usernameField = new JTextField();
+                JPasswordField passwordField = new JPasswordField();
+        
+                loginPanel.add(new JLabel("Username:"));
+                loginPanel.add(usernameField);
+                loginPanel.add(new JLabel("Password:"));
+                loginPanel.add(passwordField);
+        
+                int result = JOptionPane.showConfirmDialog(frame, loginPanel,
+                        "Login Manager", JOptionPane.OK_CANCEL_OPTION);
+        
+                if (result == JOptionPane.OK_OPTION) {
+                    String username = usernameField.getText();
+                    String password = new String(passwordField.getPassword());
+        
+                    if (username.equals("admin") && password.equals("1234")) {
+                        cardLayout.show(mainPanel, "manager");
+                    } else {
+                        JOptionPane.showMessageDialog(frame, "Login gagal. Username atau password salah.");
+                    }
                 }
-            }
-        });
+            });
         
-
-        panel.add(label);
-        panel.add(btnCustomer);
-        panel.add(btnManager);
-        return panel;
-    }
+            // Tambahkan ke panel dengan spasi
+            panel.add(Box.createVerticalStrut(90));
+            panel.add(label);
+            panel.add(Box.createVerticalStrut(20));
+            panel.add(btnCustomer);
+            panel.add(Box.createVerticalStrut(10));
+            panel.add(btnManager);
+        
+            return panel;
+        }        
 
     // Panel customer
     private static JPanel customerPanel() {
