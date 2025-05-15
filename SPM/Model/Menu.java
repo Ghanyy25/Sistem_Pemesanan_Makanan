@@ -1,5 +1,7 @@
 package Model;
 
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
 
 public class Menu {
     private static int nextId = 1;
@@ -17,28 +19,32 @@ public class Menu {
         return id;
     }
 
-    public void setNama(String nama) {
-        this.nama = nama;
-    }
     public String getNama() {
         return nama;
+    }
+
+    public double getHarga() {
+        return harga;
+    }
+
+    public void setNama(String nama) {
+        this.nama = nama;
     }
 
     public void setHarga(double harga) {
         this.harga = harga;
     }
-    public double getHarga() {
-        return harga;
-    }
 
     @Override
     public String toString() {
-        return id + ". " + nama + " - Rp" + harga;
+        DecimalFormatSymbols simbol = new DecimalFormatSymbols();
+        simbol.setGroupingSeparator('.');
+        simbol.setDecimalSeparator(','); 
+
+        DecimalFormat formatter = new DecimalFormat("#,###", simbol);
+        String hargaFormat = formatter.format(harga);
+
+    return nama + " - Rp" + hargaFormat;
     }
 }
-
-
-
-
-
 
