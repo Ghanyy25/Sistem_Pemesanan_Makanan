@@ -121,6 +121,10 @@ public class Main {
 
 ### 👨‍💻 Dibuat Oleh
 
-* **Nama**: \[Isikan nama Anda]
-* **Prodi**: \[Isikan program studi Anda]
+* **Kelompok 7**
+* **Prodi**: \Sistem Informasi
 * **Mata Kuliah**: Pemrograman Berorientasi Objek
+* **Anggota**: \-Bismillah Ghaniyyu Putra D
+                -Hilmy Affayad Akbar
+                -Moch. Syech Yusuf. M
+                -Maisyah Mahdiyyah
