@@ -24,7 +24,7 @@ public class Order {
         }
     }
 
-    public void printStruk() {
+  public void printStruk() {
     System.out.println("\n--- Struk Pemesanan ---");
     System.out.println("Customer: " + namaCustomer);
 
@@ -37,15 +37,24 @@ public class Order {
         hargaPerMenu.put(nama, item.getHarga());
     }
 
+    double totalHarga = 0;
+
+    System.out.printf("%-5s %-20s %15s\n", "Qty", "Item", "Subtotal");
+    System.out.println("==============================================");
+
     for (String nama : jumlahPerMenu.keySet()) {
         int qty = jumlahPerMenu.get(nama);
         double hargaSatuan = hargaPerMenu.get(nama);
-        System.out.println("- " + nama + " x" + qty + " (Rp" + hargaSatuan + " each) = Rp" + (hargaSatuan * qty));
+        double subtotal = hargaSatuan * qty;
+        totalHarga += subtotal;
+        System.out.printf("%-5d %-20s Rp%12.2f\n", qty, nama, subtotal);
     }
 
-    System.out.println("Total Harga: Rp" + totalHarga);
+    System.out.println("==============================================");
+    System.out.printf("%-25s Rp%12.2f\n", "Total", totalHarga);
     System.out.println("------------------------");
 }
+
 
 }
 
