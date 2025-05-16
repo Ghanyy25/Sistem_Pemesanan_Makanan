@@ -35,7 +35,7 @@ public class MainGui {
         }
 
         frame = new JFrame("Sistem Pemesanan Makanan");
-        frame.setSize(700, 600);
+        frame.setSize(600, 500);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLocationRelativeTo(null);
 
@@ -138,22 +138,9 @@ public class MainGui {
             for (Menu item : cart) {
                 preview.append("- ").append(item.getNama()).append(" (Rp").append(item.getHarga()).append(")\n");
             }
-            int opsi = JOptionPane.showConfirmDialog(frame, preview.toString() + "\nApakah ingin melanjutkan pesanan?", 
-                                                    "Preview Pesanan", JOptionPane.YES_NO_OPTION);
-            if (opsi == JOptionPane.NO_OPTION) {
-                cart.clear();
-                JOptionPane.showMessageDialog(frame, "Pesanan dibatalkan.");
-            }
-        });
-
-        btnBatal.addActionListener(e -> {
-            if (cart.isEmpty()) {
-                JOptionPane.showMessageDialog(frame, "Tidak ada pesanan untuk dibatalkan.");
-                return;
-            }
-            int konfirmasi = JOptionPane.showConfirmDialog(frame, "Anda yakin ingin membatalkan semua pesanan?", 
-                                                        "Konfirmasi Batal", JOptionPane.YES_NO_OPTION);
-            if (konfirmasi == JOptionPane.YES_OPTION) {
+            int opsi = JOptionPane.showConfirmDialog(frame, preview.toString() + "\nApakah ingin membatalkan pesanan?", 
+                                            "Preview Pesanan", JOptionPane.YES_NO_OPTION);
+            if (opsi == JOptionPane.YES_OPTION) {
                 cart.clear();
                 JOptionPane.showMessageDialog(frame, "Pesanan dibatalkan.");
             }
@@ -164,6 +151,7 @@ public class MainGui {
                 JOptionPane.showMessageDialog(frame, "Anda belum memesan apapun.");
                 return;
             }
+
             String nama = JOptionPane.showInputDialog("Nama Anda:");
             if (nama != null && !nama.isEmpty()) {
                 NumberFormat rupiahFormat = NumberFormat.getCurrencyInstance(new Locale("id", "ID"));
@@ -179,26 +167,27 @@ public class MainGui {
 
                 double total = 0;
                 StringBuilder struk = new StringBuilder("--- Struk Pemesanan ---\n");
-                struk.append("Customer: ").append(nama).append("\n");
+                struk.append("Customer: ").append(nama).append("\n\n");
+                struk.append(String.format("%-5s %-20s %15s\n", "Qty", "Item", "Subtotal"));
+                struk.append("==============================================\n");
 
                 for (String itemNama : jumlahPerMenu.keySet()) {
                     int qty = jumlahPerMenu.get(itemNama);
                     double harga = hargaPerMenu.get(itemNama);
                     double subtotal = harga * qty;
                     total += subtotal;
-                    struk.append("- ").append(itemNama)
-                        .append(" x").append(qty)
-                        .append(" (").append(rupiahFormat.format(harga)).append(" each) = ")
-                        .append(rupiahFormat.format(subtotal)).append("\n");
+                    struk.append(String.format("%-5d %-20s %15s\n", qty, itemNama, rupiahFormat.format(subtotal)));
                 }
 
-                struk.append("Total Harga: ").append(rupiahFormat.format(total)).append("\n");
+                struk.append("==============================================\n");
+                struk.append(String.format("%-25s %15s\n", "Total", rupiahFormat.format(total)));
                 struk.append("------------------------");
 
                 JOptionPane.showMessageDialog(frame, struk.toString());
                 cart.clear();
-                    }
+                }
             });
+
 
 
             btnBack.addActionListener(e -> cardLayout.show(mainPanel, "menuUtama"));
@@ -210,7 +199,6 @@ public class MainGui {
             JPanel buttonPanel = new JPanel();
             buttonPanel.add(btnPesan);
             buttonPanel.add(btnPreview);
-            buttonPanel.add(btnBatal);
             buttonPanel.add(btnSelesai);
             buttonPanel.add(btnBack);
 
