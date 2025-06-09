@@ -1,7 +1,3 @@
-Berikut adalah versi lengkap dan diperbarui dari file `README.md` dengan tambahan **penjelasan tiap kelas** di bagian khusus "📦 Penjelasan Tiap Kelas":
-
----
-
 ## 🍽️ Sistem Pemesanan Makanan - Java OOP
 
 Sistem ini merupakan implementasi program pemesanan makanan sederhana berbasis console **(Main.java)** dan versi GUI **(MainGUI.java)** menggunakan konsep **Pemrograman Berorientasi Objek (OOP)** dalam bahasa Java.
